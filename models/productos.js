@@ -10,16 +10,40 @@ class Producto {
     }
 }
 
-class Combo {
+class Productos {
     
+    get listadoArr(){
+        return Object.values(this._listado);
+    }
+
     constructor(){
         this._listado = {};
     }
 
-    crearCombo( desc='' ){
+    addProdList( desc='' ){
         const producto = new Producto( desc );
         this._listado[producto.id] = producto;
     }
+
+    loadProdList( prods = [] ){
+        prods.forEach( prod => {this._listado[prod.id] = prod});
+    }
+
+    listarProds(){
+        this.listadoArr.forEach( (producto, i) => {
+
+            const { desc, precio } = producto;
+            const p = ( precio )? precio : 'gratis';
+            console.log(`\n${ i+1 }) ${ desc } :: ${ p } €`);
+
+        });
+    }
+
+    deleteProduct( id ) {
+        (this._listado[id])
+            ? delete this._listado[id]
+            : console.log('No se pudo eliminar producto');
+    }
 }
 
-module.exports = Combo;
+module.exports = Productos;
