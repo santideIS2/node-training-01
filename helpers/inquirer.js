@@ -50,13 +50,13 @@ const pausa = async() => {
 
 }
 
-const leerIn = async( msj ) => {
+const leerIn = async( message ) => {
 
     const pregunta = [
         {
             type: 'input',
             name: 'mensaje',
-            msj,
+            message,
             validate( value ) {
                 if ( value.length === 0 ) {
                     return 'no pollo'
